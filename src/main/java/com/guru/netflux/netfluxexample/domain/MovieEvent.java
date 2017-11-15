@@ -9,10 +9,12 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class MovieEvent {
   private String movieId;
   private Date date;
 
-
+  public MovieEvent(String movieId, Date date) {
+    this.movieId = movieId;
+    this.date = date;
+  }
 }
