@@ -1,21 +1,18 @@
 package com.guru.netflux.netfluxexample.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Movie {
-
-  private String id;
-
-  @NonNull
-  private String title;
+public class MovieEvent {
+  private String movieId;
+  private Date date;
 
 
 }
