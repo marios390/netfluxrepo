@@ -3,6 +3,7 @@ package com.guru.netflux.netfluxexample.controllers;
 import com.guru.netflux.netfluxexample.domain.Movie;
 import com.guru.netflux.netfluxexample.domain.MovieEvent;
 import com.guru.netflux.netfluxexample.services.MovieService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,16 +21,17 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping(value = "/{id}/events")
+    @GetMapping(value = "/{id}/events",produces= MediaType.TEXT_EVENT_STREAM_VALUE)
     Flux<MovieEvent> streamMovieEvents(@PathVariable String id){
 
-        return null;
+        return movieService.events(id);
     }
     @GetMapping(value = "/{id}")
-    Mono<Movie> getMovieById(String id){
-        return null;
+    Mono<Movie> getMovieById(@PathVariable  String id){
+        return movieService.getMovieById(id);
     }
-    Flux<MovieEvent> getAllMovies(){
-        return null;
+    @GetMapping
+    Flux<Movie> getAllMovies(){
+        return movieService.getAllMovies();
     }
 }
